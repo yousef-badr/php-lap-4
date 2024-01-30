@@ -1,29 +1,15 @@
 <?php
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
-$dbname ='php';
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-   
-if(! $conn ) {
-    die('Could not connect: ' . mysqli_error($conn));
-} 
-   echo 'Connected successfully';
-
-   mysqli_select_db( $conn,$dbname );
-
-   $sql = 'CREATE TABLE students( student_id INT NOT NULL AUTO_INCREMENT,
+include 'config.php';
+mysqli_select_db( $conn,$dbname );
+$sql = 'CREATE TABLE students( student_id INT NOT NULL AUTO_INCREMENT,
    student_name VARCHAR(20) NOT NULL,
    student_email  VARCHAR(20) NOT NULL,
    student_gender   VARCHAR(10),
    mail_status  VARCHAR(10) NOT NULL,
    primary key ( student_id ))';
-
-   $retval = mysqli_query( $conn,$sql );
-   
-   if(! $retval ) {
-      die('Could not create table: ' . mysqli_error($conn));
-   }
-    
-   echo "<br>Database Table  created successfully\n";
-   mysqli_close($conn);
+$retval = mysqli_query( $conn,$sql );
+if(! $retval ) {
+   die('Could not create table: ' . mysqli_error($conn));
+}
+echo "<br>Database Table  created successfully\n";
+mysqli_close($conn);

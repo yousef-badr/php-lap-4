@@ -30,3 +30,6 @@ include "index.html";
     </form>
 </body>
 </html>
+<?php
+mysqli_close($conn);
+?>
